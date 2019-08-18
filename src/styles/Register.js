@@ -14,7 +14,6 @@ export const styles = StyleSheet.create({
         color: 'red',
     },
     TextInput: {
-        borderColor: black,
         borderWidth: 5
     }
 });
