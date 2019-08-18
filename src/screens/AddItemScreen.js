@@ -1,10 +1,14 @@
 import React, { Component } from "react"
-import { Text } from "react-native"
+import { Text, View } from "react-native"
+import QrScanner from "../components/QrScanner"
 
 export default class AddItemScreen extends Component {
     render() {
         return (
-            <Text>AddItemScreen</Text>
+            <View>
+                <Text>AddItemScreen</Text>
+                <QrScanner />
+            </View>
         );
     }
 } 
