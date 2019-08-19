@@ -1,22 +1,16 @@
-import { createAppContainer, createMaterialTopTabNavigator, createStackNavigator } from "react-navigation"
+import { createAppContainer, createMaterialTopTabNavigator, createStackNavigator, createSwitchNavigator } from "react-navigation"
 import { LoginScreen, RegisterScreen, HomeScreen, AddItemScreen, ReportsScreen, ScanItemScreen, SettingsScreen, StoreInfoScreen } from "../screens/index"
 
-const landingNav = createMaterialTopTabNavigator({
+const AuthStack = createMaterialTopTabNavigator({
     Login: {
         screen: LoginScreen,
     },
     Register: {
         screen: RegisterScreen
     }
-}, {
-        tabBarOptions: {
-            labelStyle: {
-                fontSize: 12,
-            },
-        }
-    });
+});
 
-const CardNav = createStackNavigator({
+const AppStack = createStackNavigator({
     Home: {
         screen: HomeScreen,
         navigationOptions: {
@@ -40,8 +34,22 @@ const CardNav = createStackNavigator({
     }
 })
 
-export default createAppContainer(CardNav);
+
+const Navigation = createSwitchNavigator(
+    {
+        AuthStack: {
+            screen: AuthStack
+        },
+        AppStack: {
+            screen: AppStack,
+        },
+    }, {
+        headerMode: 'none',
+        navigationOptions: {
+            headerVisible: false,
+        },
+    })
 
 
-// https://reactnavigation.org/docs/en/material-top-tab-navigator.html#docsNav
-// https://www.youtube.com/watch?v=C96piR3FRww
+export default createAppContainer(Navigation)
+

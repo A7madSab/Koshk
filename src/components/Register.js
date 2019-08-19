@@ -16,15 +16,15 @@ export default class Register extends Component {
 
     OnRegisterPress = () => {
         this.setState(() => ({ error: '' }))
-        console.log(this.state);
+        // console.log(this.state);
         this.setState(() => ({ loading: true }))
         const { email, password } = this.state
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then((res) => {
-                console.log(res)
+                // console.log(res)
             })
             .catch((error) => {
-                console.log(error.code, error.message)
+                // console.log(error.code, error.message)
                 this.setState(() => ({ error: error.message }))
             });
     }
@@ -44,8 +44,7 @@ export default class Register extends Component {
                 {this.state.error === '' ? null : <Text>{this.state.error}</Text>}
 
                 <Button title="REGISTER" onPress={this.OnRegisterPress} />
-                <SignInWithFacebook />
-
+                {/** <SignInWithFacebook /> */}
             </View>
         );
     }
