@@ -30,7 +30,7 @@ export default class firebaseAPI {
 
     static writeItem = (userId, itemId, itemName, itemPrice) => {
         // console.log(userId, code, itemName, ItemPrice)
-        firebase.database().ref('items/' + itemId).set({
+        firebase.database().ref('items/' + userId + "/"  + itemId).set({
             userId,
             itemName,
             itemPrice
