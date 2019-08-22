@@ -25,7 +25,7 @@ export default class Scanner extends Component {
             scanned: true
         }))
         this.props.itemScanned(type, data)
-    };
+    }
 
     render() {
         const { hasCameraPermission, scanned } = this.state;
@@ -45,6 +45,7 @@ export default class Scanner extends Component {
                         type={BarCodeScanner.Constants.Type.back}
                         onBarCodeScanned={scanned ? undefined : this._handleBarCodeScanned}
                         style={StyleSheet.absoluteFillObject}
+                        torchMode={true}
                     />
                     {scanned && (
                         <Button title={'Tap to Scan Again'} onPress={() => this.setState({ scanned: false })} />

@@ -9,10 +9,17 @@ export default class AddItemScreen extends Component {
         price: ''
     }
 
-    itemScanned = (type, data) => {
-        console.log(firebaseAPI.currentLoggedInUserId())
-        alert(`Bar code type: ${type} Data: ${data} Name:${this.state.name} Price:${this.state.price} UserID: ${firebaseAPI.currentLoggedInUserId()} `);
-        firebaseAPI.writeItem(firebaseAPI.currentLoggedInUserId(), data, this.state.name, this.state.price)
+
+    itemScanned = (type, itemId) => {
+        debugger
+        if (this.state.name !== '' && this.state.price !== '') {
+            console.log(firebaseAPI.currentLoggedInUserId())
+            alert(`Bar code type: ${type} itemId: ${itemId} Name:${this.state.name} Price:${this.state.price} UserID: ${firebaseAPI.currentLoggedInUserId()} `);
+            firebaseAPI.writeItem(firebaseAPI.currentLoggedInUserId(), itemId, this.state.name, this.state.price)
+        } else {
+            alert(`Insert All data`);
+        }
+        this.setState({ name: '', price: '' })
     }
 
     render() {

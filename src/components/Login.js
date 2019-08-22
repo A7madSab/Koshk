@@ -40,21 +40,32 @@ export default class Login extends Component {
         this.props.navigation.navigate("Home")
     }
 
+    AddItemInDatabase = () => {
+        // userId, code, itemName, ItemPrice
+        const userId = firebaseAPI.currentLoggedInUserId();
+        const code = 45612
+        const itemName = "Milk"
+        const price = 15.5
+
+        firebaseAPI.writeItem(userId, code, itemName, price);
+    }
+
     render() {
         return (
             <View styles={styles.container}>
                 <Text style={styles.formTitle}> Login From</Text>
 
                 <Text>Email: </Text>
-                <TextInput value={this.state.email} onChangeText={(email) => this.setState({ email })} />
+                <TextInput keyboardType="email-address" autoCompleteType="email" value={this.state.email} onChangeText={(email) => this.setState({ email })} />
                 <Text>Password: </Text>
-                <TextInput textContentType="password" value={this.state.password} onChangeText={(password) => this.setState({ password })} />
+                <TextInput keyboardType="visible-password" textContentType="textContentType" autoCompleteType="password" textContentType="password" value={this.state.password} onChangeText={(password) => this.setState({ password })} />
 
                 <Button title="Login" onPress={this.OnLoginPress} />
                 <Button title="Current logged in user" onPress={this.currentLoggedInUser} />
                 <Button title="Current logged in user id" onPress={this.currentLoggedInUserId} />
                 <Button title="Logout" onPress={this.logoutUser} />
                 <Button title="Go to next page" onPress={this.nextpage} />
+                <Button title="Write Something in the database" onPress={this.AddItemInDatabase} />
             </View>
         );
     }

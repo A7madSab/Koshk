@@ -19,7 +19,7 @@ export default class App extends Component {
   }
   render() {
     return (
-      <Navigation ref={nav => (this.navigator = "AppStack")} />
+      <Navigation />
     );
   }
 }

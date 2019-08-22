@@ -28,12 +28,26 @@ export default class firebaseAPI {
         firebase.auth().signOut()
     }
 
-    static writeItem = (userId, code, itemName, ItemPrice) => {
-        firebase.database().ref('users/' + userId).set({
-            code,
+    static writeItem = (userId, itemId, itemName, itemPrice) => {
+        // console.log(userId, code, itemName, ItemPrice)
+        firebase.database().ref('items/' + itemId).set({
+            userId,
             itemName,
-            ItemPrice
+            itemPrice
+        }).then(() => {
+            console.log("Inserted")
+        }).catch((err) => {
+            console.log("not Inserted error:", err)
         });
+    }
+
+    static readItembyId = (itemId) => {
+        // return (firebase.database().ref('items/' + itemId).once('value').then(item => item).then(item => item))
+        // console.log(firebase.database().collection('items').doc(itemId))
+    }
+
+    static readItem = (userId) => {
+        firebase.database().ref
     }
 
 }
